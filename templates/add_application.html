@@ -1,0 +1,665 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta name="viewport"
+          content="width=device-width, initial-scale=1.0">
+
+    <title>Add Application - CareerTrack</title>
+
+
+    <style>
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+
+        body {
+
+            font-family: Arial, sans-serif;
+
+            min-height: 100vh;
+
+            color: #f8fafc;
+
+            background:
+
+                radial-gradient(
+                    circle at 10% 10%,
+                    rgba(124, 58, 237, 0.22),
+                    transparent 25%
+                ),
+
+                radial-gradient(
+                    circle at 90% 20%,
+                    rgba(6, 182, 212, 0.16),
+                    transparent 25%
+                ),
+
+                radial-gradient(
+                    circle at 50% 100%,
+                    rgba(236, 72, 153, 0.12),
+                    transparent 30%
+                ),
+
+                #080b16;
+
+            padding-bottom: 60px;
+        }
+
+
+        /* =========================
+           NAVBAR
+        ========================= */
+
+        .navbar {
+
+            width: 92%;
+
+            max-width: 1350px;
+
+            margin: 20px auto;
+
+            padding: 16px 22px;
+
+            display: flex;
+
+            justify-content: space-between;
+
+            align-items: center;
+
+            background:
+                rgba(15, 23, 42, 0.75);
+
+            border:
+                1px solid rgba(255,255,255,0.08);
+
+            border-radius: 18px;
+
+            backdrop-filter: blur(15px);
+
+            box-shadow:
+                0 10px 40px rgba(0,0,0,0.3);
+        }
+
+
+        .logo {
+
+            font-size: 24px;
+
+            font-weight: 800;
+
+            letter-spacing: -1px;
+
+            background:
+                linear-gradient(
+                    90deg,
+                    #a855f7,
+                    #22d3ee,
+                    #ec4899
+                );
+
+            background-clip: text;
+
+            color: transparent;
+        }
+
+
+        .logo span {
+
+            color: #64748b;
+
+            font-size: 12px;
+
+            margin-left: 5px;
+        }
+
+
+        .nav-links {
+
+            display: flex;
+
+            align-items: center;
+
+            gap: 22px;
+        }
+
+
+        .nav-links a {
+
+            color: #cbd5e1;
+
+            text-decoration: none;
+
+            font-size: 14px;
+
+            transition: 0.25s;
+        }
+
+
+        .nav-links a:hover {
+
+            color: #ffffff;
+        }
+
+
+        .logout {
+
+            color: #f87171 !important;
+        }
+
+
+        /* =========================
+           CONTAINER
+        ========================= */
+
+        .container {
+
+            width: 92%;
+
+            max-width: 850px;
+
+            margin: 55px auto;
+        }
+
+
+        /* =========================
+           PAGE HEADER
+        ========================= */
+
+        .page-header {
+
+            text-align: center;
+
+            margin-bottom: 30px;
+        }
+
+
+        .page-header h1 {
+
+            font-size: 38px;
+
+            letter-spacing: -1.5px;
+
+            margin-bottom: 10px;
+
+            background:
+                linear-gradient(
+                    90deg,
+                    #c084fc,
+                    #22d3ee,
+                    #f472b6
+                );
+
+            background-clip: text;
+
+            color: transparent;
+        }
+
+
+        .page-header p {
+
+            color: #94a3b8;
+
+            font-size: 15px;
+        }
+
+
+        /* =========================
+           FORM CARD
+        ========================= */
+
+        .form-card {
+
+            background:
+                rgba(15, 23, 42, 0.82);
+
+            border:
+                1px solid rgba(255,255,255,0.08);
+
+            border-radius: 22px;
+
+            padding: 35px;
+
+            backdrop-filter: blur(16px);
+
+            box-shadow:
+                0 20px 60px rgba(0,0,0,0.35);
+        }
+
+
+        .form-card::before {
+
+            content: "";
+
+            display: block;
+
+            height: 3px;
+
+            width: 100%;
+
+            margin-bottom: 30px;
+
+            border-radius: 10px;
+
+            background:
+                linear-gradient(
+                    90deg,
+                    #7c3aed,
+                    #06b6d4,
+                    #ec4899
+                );
+        }
+
+
+        /* =========================
+           DJANGO FORM
+        ========================= */
+
+        form p {
+
+            margin-bottom: 20px;
+        }
+
+
+        label {
+
+            display: block;
+
+            color: #cbd5e1;
+
+            font-size: 13px;
+
+            font-weight: 600;
+
+            margin-bottom: 8px;
+        }
+
+
+        input,
+        select,
+        textarea {
+
+            width: 100%;
+
+            padding: 13px 14px;
+
+            border-radius: 11px;
+
+            border:
+                1px solid rgba(255,255,255,0.10);
+
+            background:
+                rgba(30,41,59,0.75);
+
+            color: #f8fafc;
+
+            font-size: 14px;
+
+            outline: none;
+
+            transition: 0.25s;
+        }
+
+
+        input:focus,
+        select:focus,
+        textarea:focus {
+
+            border-color: #8b5cf6;
+
+            box-shadow:
+                0 0 0 3px rgba(139,92,246,0.15);
+
+            background:
+                rgba(30,41,59,0.95);
+        }
+
+
+        input::placeholder,
+        textarea::placeholder {
+
+            color: #64748b;
+        }
+
+
+        textarea {
+
+            min-height: 120px;
+
+            resize: vertical;
+        }
+
+
+        select option {
+
+            background: #0f172a;
+
+            color: #f8fafc;
+        }
+
+
+        /* Date fields */
+
+        input[type="date"] {
+
+            color-scheme: dark;
+        }
+
+
+        /* =========================
+           HELP TEXT / ERRORS
+        ========================= */
+
+        .helptext {
+
+            display: block;
+
+            margin-top: 6px;
+
+            color: #64748b;
+
+            font-size: 11px;
+        }
+
+
+        ul.errorlist {
+
+            list-style: none;
+
+            margin: 6px 0;
+
+            padding: 0;
+
+            color: #f87171;
+
+            font-size: 12px;
+        }
+
+
+        /* =========================
+           BUTTON
+        ========================= */
+
+        .submit-btn {
+
+            width: 100%;
+
+            border: none;
+
+            padding: 14px 20px;
+
+            border-radius: 12px;
+
+            margin-top: 10px;
+
+            color: white;
+
+            font-size: 14px;
+
+            font-weight: bold;
+
+            cursor: pointer;
+
+            background:
+                linear-gradient(
+                    135deg,
+                    #7c3aed,
+                    #06b6d4
+                );
+
+            box-shadow:
+                0 0 25px rgba(124,58,237,0.28);
+
+            transition: 0.25s;
+        }
+
+
+        .submit-btn:hover {
+
+            transform: translateY(-2px);
+
+            box-shadow:
+                0 0 35px rgba(124,58,237,0.45);
+        }
+
+
+        /* =========================
+           BACK BUTTON
+        ========================= */
+
+        .back-section {
+
+            text-align: center;
+
+            margin-top: 22px;
+        }
+
+
+        .back-btn {
+
+            display: inline-block;
+
+            color: #94a3b8;
+
+            text-decoration: none;
+
+            font-size: 13px;
+
+            padding: 10px 16px;
+
+            border-radius: 10px;
+
+            border:
+                1px solid rgba(255,255,255,0.06);
+
+            background:
+                rgba(15,23,42,0.5);
+
+            transition: 0.25s;
+        }
+
+
+        .back-btn:hover {
+
+            color: #ffffff;
+
+            border-color:
+                rgba(139,92,246,0.4);
+
+            transform: translateY(-2px);
+        }
+
+
+        /* =========================
+           FOOTER
+        ========================= */
+
+        .footer {
+
+            text-align: center;
+
+            color: #475569;
+
+            font-size: 11px;
+
+            margin-top: 30px;
+        }
+
+
+        /* =========================
+           RESPONSIVE
+        ========================= */
+
+        @media (max-width: 700px) {
+
+            .navbar {
+
+                flex-direction: column;
+
+                gap: 15px;
+
+                padding: 18px;
+            }
+
+
+            .nav-links {
+
+                flex-wrap: wrap;
+
+                justify-content: center;
+
+                gap: 12px;
+            }
+
+
+            .container {
+
+                width: 92%;
+
+                margin-top: 35px;
+            }
+
+
+            .page-header h1 {
+
+                font-size: 30px;
+            }
+
+
+            .form-card {
+
+                padding: 25px 20px;
+            }
+
+        }
+
+    </style>
+
+</head>
+
+
+<body>
+
+
+<!-- =========================
+     NAVBAR
+========================= -->
+
+<nav class="navbar">
+
+
+    <div class="logo">
+
+        CareerTrack
+
+        <span>v1.0</span>
+
+    </div>
+
+
+    <div class="nav-links">
+
+        <a href="{% url 'home' %}">
+            Dashboard
+        </a>
+
+        <a href="{% url 'application_list' %}">
+            Applications
+        </a>
+
+        <a href="{% url 'analytics' %}">
+            Analytics
+        </a>
+
+        <a href="/logout/" class="logout">
+            Logout
+        </a>
+
+    </div>
+
+
+</nav>
+
+
+
+<!-- =========================
+     MAIN
+========================= -->
+
+<main class="container">
+
+
+    <div class="page-header">
+
+        <h1>
+            Add Job Application
+        </h1>
+
+        <p>
+            Track a new opportunity and keep your career pipeline organized.
+        </p>
+
+    </div>
+
+
+
+    <div class="form-card">
+
+
+        <form method="POST">
+
+            {% csrf_token %}
+
+
+            {{ form.as_p }}
+
+
+            <button
+                type="submit"
+                class="submit-btn">
+
+                🚀 Save Application
+
+            </button>
+
+
+        </form>
+
+
+    </div>
+
+
+
+    <div class="back-section">
+
+        <a
+            href="{% url 'home' %}"
+            class="back-btn">
+
+            ← Back to Dashboard
+
+        </a>
+
+    </div>
+
+
+    <div class="footer">
+
+        CareerTrack • Built for the next generation of engineers ⚡
+
+    </div>
+
+
+</main>
+
+
+</body>
+
+</html>

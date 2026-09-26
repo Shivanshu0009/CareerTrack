@@ -1,0 +1,713 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta name="viewport"
+          content="width=device-width, initial-scale=1.0">
+
+    <title>{{ application.company_name }} - CareerTrack</title>
+
+
+    <style>
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+
+        body {
+
+            font-family: Arial, sans-serif;
+
+            background: #080b16;
+
+            color: #f8fafc;
+
+            min-height: 100vh;
+
+        }
+
+
+        /* NAVBAR */
+
+        nav {
+
+            height: 70px;
+
+            display: flex;
+
+            align-items: center;
+
+            justify-content: space-between;
+
+            padding: 0 7%;
+
+            background: #0b1020;
+
+            border-bottom: 1px solid #1e293b;
+
+        }
+
+
+        .logo {
+
+            font-size: 22px;
+
+            font-weight: bold;
+
+            color: #a78bfa;
+
+        }
+
+
+        .nav-links {
+
+            display: flex;
+
+            gap: 25px;
+
+            align-items: center;
+
+        }
+
+
+        .nav-links a {
+
+            color: #cbd5e1;
+
+            text-decoration: none;
+
+            font-size: 14px;
+
+        }
+
+
+        .nav-links a:hover {
+
+            color: #a78bfa;
+
+        }
+
+
+        .add-btn {
+
+            background: #7c3aed;
+
+            color: white !important;
+
+            padding: 10px 16px;
+
+            border-radius: 10px;
+
+        }
+
+
+        /* MAIN */
+
+        .container {
+
+            width: 86%;
+
+            max-width: 1000px;
+
+            margin: 50px auto;
+
+        }
+
+
+        .back {
+
+            display: inline-block;
+
+            color: #a78bfa;
+
+            text-decoration: none;
+
+            margin-bottom: 25px;
+
+        }
+
+
+        /* HEADER */
+
+        .application-header {
+
+            background: #101625;
+
+            border: 1px solid #1e293b;
+
+            border-radius: 20px;
+
+            padding: 35px;
+
+            margin-bottom: 20px;
+
+        }
+
+
+        .application-header h1 {
+
+            font-size: 38px;
+
+            margin-bottom: 10px;
+
+        }
+
+
+        .job-title {
+
+            color: #a78bfa;
+
+            font-size: 20px;
+
+            margin-bottom: 20px;
+
+        }
+
+
+        .status {
+
+            display: inline-block;
+
+            padding: 8px 14px;
+
+            border-radius: 20px;
+
+            background: #312e81;
+
+            color: #c4b5fd;
+
+            font-size: 13px;
+
+            font-weight: bold;
+
+        }
+
+
+        /* DETAILS */
+
+        .details-card {
+
+            background: #101625;
+
+            border: 1px solid #1e293b;
+
+            border-radius: 20px;
+
+            padding: 30px;
+
+            margin-bottom: 20px;
+
+        }
+
+
+        .details-card h2 {
+
+            margin-bottom: 25px;
+
+            font-size: 21px;
+
+        }
+
+
+        .details-grid {
+
+            display: grid;
+
+            grid-template-columns: repeat(2, 1fr);
+
+            gap: 18px;
+
+        }
+
+
+        .detail {
+
+            background: #0b1020;
+
+            border: 1px solid #1e293b;
+
+            padding: 17px;
+
+            border-radius: 12px;
+
+        }
+
+
+        .label {
+
+            display: block;
+
+            color: #64748b;
+
+            font-size: 12px;
+
+            margin-bottom: 7px;
+
+        }
+
+
+        .value {
+
+            color: #e2e8f0;
+
+            font-size: 15px;
+
+        }
+
+
+        /* NOTES */
+
+        .notes {
+
+            background: #0b1020;
+
+            border: 1px solid #1e293b;
+
+            padding: 18px;
+
+            border-radius: 12px;
+
+            color: #cbd5e1;
+
+            line-height: 1.6;
+
+            white-space: pre-wrap;
+
+        }
+
+
+        /* LINK */
+
+        .job-link {
+
+            display: inline-block;
+
+            margin-top: 15px;
+
+            padding: 11px 18px;
+
+            border-radius: 10px;
+
+            background: #164e63;
+
+            color: #67e8f9;
+
+            text-decoration: none;
+
+        }
+
+
+        .job-link:hover {
+
+            background: #155e75;
+
+        }
+
+
+        /* ACTIONS */
+
+        .actions {
+
+            display: flex;
+
+            gap: 12px;
+
+            margin-top: 25px;
+
+        }
+
+
+        .actions a {
+
+            text-decoration: none;
+
+            padding: 12px 20px;
+
+            border-radius: 10px;
+
+            font-size: 14px;
+
+            font-weight: bold;
+
+        }
+
+
+        .edit {
+
+            background: #7c3aed;
+
+            color: white;
+
+        }
+
+
+        .delete {
+
+            background: #4c1d1d;
+
+            color: #fca5a5;
+
+        }
+
+
+        /* RESPONSIVE */
+
+        @media (max-width: 700px) {
+
+            .nav-links {
+
+                gap: 10px;
+
+            }
+
+
+            .nav-links a {
+
+                font-size: 12px;
+
+            }
+
+
+            .container {
+
+                width: 92%;
+
+            }
+
+
+            .application-header h1 {
+
+                font-size: 30px;
+
+            }
+
+
+            .details-grid {
+
+                grid-template-columns: 1fr;
+
+            }
+
+        }
+
+    </style>
+
+</head>
+
+
+<body>
+
+
+<!-- NAVBAR -->
+
+<nav>
+
+    <div class="logo">
+        CareerTrack
+    </div>
+
+
+    <div class="nav-links">
+
+        <a href="{% url 'home' %}">
+            Dashboard
+        </a>
+
+
+        <a href="{% url 'application_list' %}">
+            Applications
+        </a>
+
+
+        <a href="{% url 'analytics' %}">
+            Analytics
+        </a>
+
+
+        <a class="add-btn"
+           href="{% url 'add_application' %}">
+            + Add Application
+        </a>
+
+
+        <a href="{% url 'logout' %}">
+            Logout
+        </a>
+
+    </div>
+
+</nav>
+
+
+<!-- MAIN -->
+
+<div class="container">
+
+
+    <a class="back"
+       href="{% url 'application_list' %}">
+
+        ← Back to Applications
+
+    </a>
+
+
+    <!-- HEADER -->
+
+    <div class="application-header">
+
+        <h1>
+            {{ application.company_name }}
+        </h1>
+
+
+        <div class="job-title">
+
+            {{ application.job_title }}
+
+        </div>
+
+
+        <span class="status">
+
+            {{ application.status }}
+
+        </span>
+        <form
+    method="POST"
+    action="{% url 'update_status' application.id %}"
+    style="margin-top: 20px;"
+>
+
+    {% csrf_token %}
+
+    <select
+        name="status"
+        style="
+            padding: 10px 14px;
+            border-radius: 10px;
+            background: #0b1020;
+            color: white;
+            border: 1px solid #334155;
+        "
+    >
+
+        {% for value, label in status_choices %}
+
+            <option
+                value="{{ value }}"
+                {% if application.status == value %}
+                    selected
+                {% endif %}
+            >
+
+                {{ label }}
+
+            </option>
+
+        {% endfor %}
+
+    </select>
+
+
+    <button
+        type="submit"
+        style="
+            padding: 10px 16px;
+            border: none;
+            border-radius: 10px;
+            background: #7c3aed;
+            color: white;
+            cursor: pointer;
+            margin-left: 8px;
+        "
+    >
+
+        Update Status
+
+    </button>
+
+</form>
+
+    </div>
+
+
+    <!-- DETAILS -->
+
+    <div class="details-card">
+
+        <h2>
+            Application Details
+        </h2>
+
+
+        <div class="details-grid">
+
+
+            <div class="detail">
+
+                <span class="label">
+                    Application Type
+                </span>
+
+                <span class="value">
+                    {{ application.application_type }}
+                </span>
+
+            </div>
+
+
+            <div class="detail">
+
+                <span class="label">
+                    Location
+                </span>
+
+                <span class="value">
+                    {{ application.location }}
+                </span>
+
+            </div>
+
+
+            <div class="detail">
+
+                <span class="label">
+                    Application Date
+                </span>
+
+                <span class="value">
+                    {{ application.application_date }}
+                </span>
+
+            </div>
+
+
+            <div class="detail">
+
+                <span class="label">
+                    Deadline
+                </span>
+
+                <span class="value">
+
+                    {% if application.deadline %}
+
+                        {{ application.deadline }}
+
+                    {% else %}
+
+                        No deadline specified
+
+                    {% endif %}
+
+                </span>
+
+            </div>
+
+
+            <div class="detail">
+
+                <span class="label">
+                    Salary
+                </span>
+
+                <span class="value">
+
+                    {% if application.salary %}
+
+                        {{ application.salary }}
+
+                    {% else %}
+
+                        Not specified
+
+                    {% endif %}
+
+                </span>
+
+            </div>
+
+
+        </div>
+
+
+        {% if application.job_link %}
+
+            <a
+                class="job-link"
+                href="{{ application.job_link }}"
+                target="_blank"
+            >
+
+                🔗 Open Job Posting
+
+            </a>
+
+        {% endif %}
+
+    </div>
+
+
+    <!-- NOTES -->
+
+    {% if application.notes %}
+
+        <div class="details-card">
+
+            <h2>
+                📝 Notes
+            </h2>
+
+
+            <div class="notes">
+
+                {{ application.notes }}
+
+            </div>
+
+        </div>
+
+    {% endif %}
+
+
+    <!-- ACTIONS -->
+
+    <div class="actions">
+
+
+        <a
+            class="edit"
+            href="{% url 'edit_application' application.id %}"
+        >
+
+            ✏ Edit Application
+
+        </a>
+
+
+        <a
+            class="delete"
+            href="{% url 'delete_application' application.id %}"
+        >
+
+            🗑 Delete Application
+
+        </a>
+
+
+    </div>
+
+
+</div>
+
+
+</body>
+
+</html>

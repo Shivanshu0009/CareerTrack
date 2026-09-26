@@ -1,0 +1,1387 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>CareerTrack | Dashboard</title>
+
+    <style>
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: Arial, sans-serif;
+            background:
+                radial-gradient(circle at 10% 10%, rgba(124, 58, 237, 0.20), transparent 25%),
+                radial-gradient(circle at 90% 20%, rgba(6, 182, 212, 0.15), transparent 25%),
+                radial-gradient(circle at 50% 100%, rgba(236, 72, 153, 0.12), transparent 30%),
+                #080b16;
+
+            color: #f8fafc;
+            min-height: 100vh;
+        }
+
+
+        /* =========================
+           NAVBAR
+        ========================= */
+
+        .navbar {
+
+            width: 92%;
+            max-width: 1350px;
+
+            margin: 20px auto;
+
+            padding: 16px 22px;
+
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+
+            background: rgba(15, 23, 42, 0.75);
+
+            border: 1px solid rgba(255,255,255,0.08);
+
+            border-radius: 18px;
+
+            backdrop-filter: blur(15px);
+
+            box-shadow:
+                0 10px 40px rgba(0,0,0,0.3);
+        }
+
+
+        .logo {
+
+    font-size: 24px;
+
+    font-weight: 800;
+
+    letter-spacing: -1px;
+
+    background: linear-gradient(
+        90deg,
+        #a855f7,
+        #22d3ee,
+        #ec4899
+    );
+
+    background-clip: text;
+
+    color: transparent;
+}
+
+
+        .logo span {
+
+            color: #64748b;
+
+            font-size: 12px;
+
+            margin-left: 5px;
+        }
+
+
+        .nav-links {
+
+            display: flex;
+
+            align-items: center;
+
+            gap: 22px;
+        }
+
+
+        .nav-links a {
+
+            color: #cbd5e1;
+
+            text-decoration: none;
+
+            font-size: 14px;
+
+            transition: 0.25s;
+        }
+
+
+        .nav-links a:hover {
+
+            color: #ffffff;
+
+            transform: translateY(-1px);
+        }
+
+
+        .add-btn {
+
+            background: linear-gradient(
+                135deg,
+                #7c3aed,
+                #06b6d4
+            );
+
+            color: white !important;
+
+            padding: 10px 16px;
+
+            border-radius: 10px;
+
+            font-weight: bold;
+
+            box-shadow:
+                0 0 20px rgba(124,58,237,0.35);
+        }
+
+
+        /* =========================
+           MAIN
+        ========================= */
+
+        .container {
+
+            width: 92%;
+
+            max-width: 1350px;
+
+            margin: 45px auto 60px;
+        }
+
+
+        /* =========================
+           WELCOME
+        ========================= */
+
+        .welcome {
+
+            display: flex;
+
+            justify-content: space-between;
+
+            align-items: center;
+
+            margin-bottom: 35px;
+        }
+
+
+        .welcome h1 {
+
+            font-size: 38px;
+
+            letter-spacing: -1.5px;
+
+            margin-bottom: 8px;
+        }
+
+
+        .gradient-text {
+    background: linear-gradient(
+        90deg,
+        #c084fc,
+        #22d3ee,
+        #f472b6
+    );
+
+    color: #c084fc;
+}
+
+
+        .welcome p {
+
+            color: #94a3b8;
+
+            font-size: 15px;
+        }
+
+
+        .quick-add {
+
+            text-decoration: none;
+
+            color: white;
+
+            padding: 13px 20px;
+
+            border-radius: 12px;
+
+            font-size: 14px;
+
+            font-weight: bold;
+
+            background: linear-gradient(
+                135deg,
+                #7c3aed,
+                #ec4899
+            );
+
+            box-shadow:
+                0 0 25px rgba(168,85,247,0.3);
+
+            transition: 0.25s;
+        }
+
+
+        .quick-add:hover {
+
+            transform: translateY(-3px);
+
+            box-shadow:
+                0 0 35px rgba(168,85,247,0.5);
+        }
+
+
+        /* =========================
+           STAT CARDS
+        ========================= */
+
+        .cards {
+
+            display: grid;
+
+            grid-template-columns:
+                repeat(4, 1fr);
+
+            gap: 18px;
+
+            margin-bottom: 25px;
+        }
+
+
+        .card {
+
+            position: relative;
+
+            overflow: hidden;
+
+            background:
+                linear-gradient(
+                    145deg,
+                    rgba(30,41,59,0.9),
+                    rgba(15,23,42,0.8)
+                );
+
+            border: 1px solid rgba(255,255,255,0.08);
+
+            border-radius: 18px;
+
+            padding: 23px;
+
+            transition: 0.3s;
+
+            box-shadow:
+                0 10px 35px rgba(0,0,0,0.25);
+        }
+
+
+        .card::before {
+
+            content: "";
+
+            position: absolute;
+
+            width: 100px;
+
+            height: 100px;
+
+            border-radius: 50%;
+
+            background: #7c3aed;
+
+            filter: blur(55px);
+
+            opacity: 0.25;
+
+            right: -30px;
+
+            top: -30px;
+        }
+
+
+        .card:hover {
+
+            transform: translateY(-5px);
+
+            border-color: rgba(168,85,247,0.4);
+
+            box-shadow:
+                0 15px 40px rgba(0,0,0,0.35);
+        }
+
+
+        .card h3 {
+
+            color: #94a3b8;
+
+            font-size: 13px;
+
+            font-weight: 500;
+
+            margin-bottom: 13px;
+        }
+
+
+        .number {
+
+            font-size: 34px;
+
+            font-weight: 800;
+
+            color: white;
+        }
+
+
+        .card-subtitle {
+
+            margin-top: 7px;
+
+            color: #64748b;
+
+            font-size: 11px;
+        }
+
+
+        /* Different card accents */
+
+        .card:nth-child(1) .number {
+
+            color: #a78bfa;
+        }
+
+
+        .card:nth-child(2) .number {
+
+            color: #22d3ee;
+        }
+
+
+        .card:nth-child(3) .number {
+
+            color: #f472b6;
+        }
+
+
+        .card:nth-child(4) .number {
+
+            color: #4ade80;
+        }
+
+
+        /* =========================
+           ANALYTICS
+        ========================= */
+
+        .analytics {
+
+            display: grid;
+
+            grid-template-columns:
+                1fr 1fr;
+
+            gap: 20px;
+
+            margin-bottom: 25px;
+        }
+
+
+        .analytics-card {
+
+            background:
+                rgba(15,23,42,0.78);
+
+            border: 1px solid rgba(255,255,255,0.07);
+
+            border-radius: 18px;
+
+            padding: 25px;
+
+            backdrop-filter: blur(12px);
+
+            box-shadow:
+                0 10px 35px rgba(0,0,0,0.25);
+        }
+
+
+        .analytics-card h2 {
+
+            font-size: 18px;
+
+            margin-bottom: 20px;
+
+            color: #f8fafc;
+        }
+
+
+        /* =========================
+           PIPELINE
+        ========================= */
+
+        .status-row {
+
+            display: flex;
+
+            justify-content: space-between;
+
+            align-items: center;
+
+            padding: 13px 0;
+
+            border-bottom:
+                1px solid rgba(255,255,255,0.06);
+        }
+
+
+        .status-row:last-child {
+
+            border-bottom: none;
+        }
+
+
+        .status-name {
+
+            color: #cbd5e1;
+
+            font-size: 14px;
+        }
+
+
+        .status-count {
+
+            min-width: 32px;
+
+            text-align: center;
+
+            padding: 5px 9px;
+
+            border-radius: 8px;
+
+            font-size: 12px;
+
+            font-weight: bold;
+
+            background: rgba(124,58,237,0.15);
+
+            color: #c4b5fd;
+
+            border: 1px solid rgba(124,58,237,0.2);
+        }
+
+
+        /* =========================
+           OVERVIEW
+        ========================= */
+
+        .overview {
+
+            display: grid;
+
+            grid-template-columns:
+                repeat(2, 1fr);
+
+            gap: 12px;
+        }
+
+
+        .overview-item {
+
+            padding: 17px;
+
+            border-radius: 13px;
+
+            background:
+                rgba(30,41,59,0.65);
+
+            border:
+                1px solid rgba(255,255,255,0.05);
+
+            transition: 0.2s;
+        }
+
+
+        .overview-item:hover {
+
+            background:
+                rgba(51,65,85,0.65);
+
+            transform: translateY(-2px);
+        }
+
+
+        .overview-item span {
+
+            display: block;
+
+            color: #64748b;
+
+            font-size: 12px;
+
+            margin-bottom: 7px;
+        }
+
+
+        .overview-item strong {
+
+            font-size: 23px;
+
+            color: #e2e8f0;
+        }
+
+
+        /* =========================
+           RECENT APPLICATIONS
+        ========================= */
+
+        .applications-section {
+
+            background:
+                rgba(15,23,42,0.8);
+
+            border:
+                1px solid rgba(255,255,255,0.07);
+
+            border-radius: 18px;
+
+            padding: 28px;
+
+            box-shadow:
+                0 10px 35px rgba(0,0,0,0.25);
+        }
+
+
+        .section-header {
+
+            display: flex;
+
+            justify-content: space-between;
+
+            align-items: center;
+
+            margin-bottom: 18px;
+        }
+
+
+        .section-header h2 {
+
+            font-size: 20px;
+        }
+
+
+        .view-all {
+
+            color: #22d3ee;
+
+            text-decoration: none;
+
+            font-size: 13px;
+
+            font-weight: bold;
+        }
+
+
+        .application {
+
+            display: flex;
+
+            justify-content: space-between;
+
+            align-items: center;
+
+            padding: 18px 0;
+
+            border-bottom:
+                1px solid rgba(255,255,255,0.06);
+        }
+
+
+        .application:last-child {
+
+            border-bottom: none;
+        }
+
+
+        .company {
+
+            font-size: 16px;
+
+            font-weight: bold;
+
+            color: #f8fafc;
+        }
+
+
+        .job {
+
+            color: #94a3b8;
+
+            font-size: 13px;
+
+            margin-top: 5px;
+        }
+
+
+        .date {
+
+            color: #64748b;
+
+            font-size: 11px;
+
+            margin-top: 6px;
+        }
+
+
+        /* =========================
+           STATUS BADGES
+        ========================= */
+
+        .status {
+
+            padding: 7px 12px;
+
+            border-radius: 20px;
+
+            font-size: 11px;
+
+            font-weight: bold;
+
+            white-space: nowrap;
+        }
+
+
+        .status-saved {
+
+            background: rgba(148,163,184,0.12);
+
+            color: #cbd5e1;
+        }
+
+
+        .status-applied {
+
+            background: rgba(59,130,246,0.15);
+
+            color: #60a5fa;
+        }
+
+
+        .status-review {
+
+            background: rgba(234,179,8,0.15);
+
+            color: #facc15;
+        }
+
+
+        .status-assessment {
+
+            background: rgba(168,85,247,0.15);
+
+            color: #c084fc;
+        }
+
+
+        .status-interview {
+
+            background: rgba(6,182,212,0.15);
+
+            color: #22d3ee;
+        }
+
+
+        .status-selected {
+
+            background: rgba(34,197,94,0.15);
+
+            color: #4ade80;
+        }
+
+
+        .status-rejected {
+
+            background: rgba(239,68,68,0.15);
+
+            color: #f87171;
+        }
+
+
+        /* =========================
+           EMPTY
+        ========================= */
+
+        .empty {
+
+            text-align: center;
+
+            padding: 40px;
+
+            color: #64748b;
+        }
+
+
+        .empty h3 {
+
+            color: #cbd5e1;
+
+            margin-bottom: 7px;
+        }
+
+
+        /* =========================
+           FOOTER
+        ========================= */
+
+        .footer {
+
+            text-align: center;
+
+            color: #475569;
+
+            font-size: 11px;
+
+            margin-top: 30px;
+        }
+
+
+        /* =========================
+           RESPONSIVE
+        ========================= */
+
+        @media (max-width: 1000px) {
+
+            .cards {
+
+                grid-template-columns:
+                    repeat(2, 1fr);
+            }
+
+            .analytics {
+
+                grid-template-columns:
+                    1fr;
+            }
+
+        }
+
+
+        @media (max-width: 700px) {
+
+            .navbar {
+
+                flex-direction: column;
+
+                gap: 15px;
+
+                padding: 18px;
+            }
+
+
+            .nav-links {
+
+                flex-wrap: wrap;
+
+                justify-content: center;
+
+                gap: 12px;
+            }
+
+
+            .container {
+
+                width: 92%;
+
+                margin-top: 30px;
+            }
+
+
+            .welcome {
+
+                flex-direction: column;
+
+                align-items: flex-start;
+
+                gap: 20px;
+            }
+
+
+            .welcome h1 {
+
+                font-size: 30px;
+            }
+
+
+            .cards {
+
+                grid-template-columns:
+                    1fr;
+            }
+
+
+            .overview {
+
+                grid-template-columns:
+                    1fr;
+            }
+
+
+            .application {
+
+                flex-direction: column;
+
+                align-items: flex-start;
+
+                gap: 12px;
+            }
+
+        }
+
+    </style>
+
+</head>
+
+
+<body>
+
+
+<!-- =========================
+     NAVBAR
+========================= -->
+
+<nav class="navbar">
+
+    <div class="logo">
+
+        CareerTrack
+
+        <span>v1.0</span>
+
+    </div>
+
+
+    <div class="nav-links">
+
+        <a href="{% url 'home' %}">
+            Dashboard
+        </a>
+
+        <a href="{% url 'application_list' %}">
+            Applications
+        </a>
+        <a href="{% url 'analytics' %}">
+            Analytics
+        </a>
+
+        <a href="{% url 'add_application' %}"
+           class="add-btn">
+
+            + Add Application
+
+        </a>
+
+        <a href="/logout/">
+            Logout
+        </a>
+
+    </div>
+
+</nav>
+
+
+
+<!-- =========================
+     MAIN
+========================= -->
+
+<main class="container">
+
+
+<!-- WELCOME -->
+
+<div class="welcome">
+
+    <div>
+
+        <h1>
+
+            Welcome back,
+
+            <span class="gradient-text">
+                Job Hunter 🚀
+            </span>
+
+        </h1>
+
+        <p>
+            Your career pipeline, all in one place.
+        </p>
+
+    </div>
+
+
+    <a href="{% url 'add_application' %}"
+       class="quick-add">
+
+        + Track New Application
+
+    </a>
+
+</div>
+
+
+
+<!-- =========================
+     STAT CARDS
+========================= -->
+
+<div class="cards">
+
+
+    <div class="card">
+
+        <h3>
+            TOTAL APPLICATIONS
+        </h3>
+
+        <div class="number">
+            {{ total_applications }}
+        </div>
+
+        <div class="card-subtitle">
+            All tracked applications
+        </div>
+
+    </div>
+
+
+    <div class="card">
+
+        <h3>
+            ACTIVE APPLICATIONS
+        </h3>
+
+        <div class="number">
+            {{ active_applications }}
+        </div>
+
+        <div class="card-subtitle">
+            Currently in progress
+        </div>
+
+    </div>
+
+
+    <div class="card">
+
+        <h3>
+            INTERVIEWS
+        </h3>
+
+        <div class="number">
+            {{ interviews }}
+        </div>
+
+        <div class="card-subtitle">
+            Interview stage
+        </div>
+
+    </div>
+
+
+    <div class="card">
+
+        <h3>
+            SELECTED
+        </h3>
+
+        <div class="number">
+            {{ selected }}
+        </div>
+
+        <div class="card-subtitle">
+            Successful applications
+        </div>
+
+    </div>
+
+
+</div>
+
+
+
+<!-- =========================
+     ANALYTICS
+========================= -->
+
+<div class="analytics">
+
+
+    <!-- PIPELINE -->
+
+    <div class="analytics-card">
+
+        <h2>
+            ⚡ Application Pipeline
+        </h2>
+
+
+        <div class="status-row">
+
+            <span class="status-name">
+                Saved
+            </span>
+
+            <span class="status-count">
+                {{ saved }}
+            </span>
+
+        </div>
+
+
+        <div class="status-row">
+
+            <span class="status-name">
+                Applied
+            </span>
+
+            <span class="status-count">
+                {{ applied }}
+            </span>
+
+        </div>
+
+
+        <div class="status-row">
+
+            <span class="status-name">
+                Under Review
+            </span>
+
+            <span class="status-count">
+                {{ under_review }}
+            </span>
+
+        </div>
+
+
+        <div class="status-row">
+
+            <span class="status-name">
+                Assessment
+            </span>
+
+            <span class="status-count">
+                {{ assessments }}
+            </span>
+
+        </div>
+
+
+        <div class="status-row">
+
+            <span class="status-name">
+                Interview
+            </span>
+
+            <span class="status-count">
+                {{ interviews }}
+            </span>
+
+        </div>
+
+
+        <div class="status-row">
+
+            <span class="status-name">
+                Selected
+            </span>
+
+            <span class="status-count">
+                {{ selected }}
+            </span>
+
+        </div>
+
+
+        <div class="status-row">
+
+            <span class="status-name">
+                Rejected
+            </span>
+
+            <span class="status-count">
+                {{ rejected }}
+            </span>
+
+        </div>
+
+    </div>
+
+
+
+    <!-- QUICK OVERVIEW -->
+
+    <div class="analytics-card">
+
+        <h2>
+            📊 Quick Overview
+        </h2>
+
+
+        <div class="overview">
+
+
+            <div class="overview-item">
+
+                <span>
+                    Applications Submitted
+                </span>
+
+                <strong>
+                    {{ applied }}
+                </strong>
+
+            </div>
+
+
+            <div class="overview-item">
+
+                <span>
+                    Assessments
+                </span>
+
+                <strong>
+                    {{ assessments }}
+                </strong>
+
+            </div>
+
+
+            <div class="overview-item">
+
+                <span>
+                    Interviews
+                </span>
+
+                <strong>
+                    {{ interviews }}
+                </strong>
+
+            </div>
+
+
+            <div class="overview-item">
+
+                <span>
+                    Selected
+                </span>
+
+                <strong>
+                    {{ selected }}
+                </strong>
+
+            </div>
+
+
+            <div class="overview-item">
+
+                <span>
+                    Rejected
+                </span>
+
+                <strong>
+                    {{ rejected }}
+                </strong>
+
+            </div>
+
+
+            <div class="overview-item">
+
+                <span>
+                    Saved for Later
+                </span>
+
+                <strong>
+                    {{ saved }}
+                </strong>
+
+            </div>
+
+
+        </div>
+
+    </div>
+
+
+</div>
+
+
+
+<!-- =========================
+     RECENT APPLICATIONS
+========================= -->
+
+<div class="applications-section">
+
+
+    <div class="section-header">
+
+        <h2>
+            🧑‍💻 Recent Applications
+        </h2>
+
+
+        <a href="{% url 'application_list' %}"
+           class="view-all">
+
+            View All →
+
+        </a>
+
+    </div>
+
+
+
+    {% if applications %}
+
+
+        {% for application in applications|slice:":5" %}
+
+
+            <div class="application">
+
+
+                <div>
+
+                    <div class="company">
+
+                        {{ application.company_name }}
+
+                    </div>
+
+
+                    <div class="job">
+
+                        {{ application.job_title }}
+
+                        •
+                        
+                        {{ application.location }}
+
+                    </div>
+
+
+                    <div class="date">
+
+                        Applied:
+                        {{ application.application_date }}
+
+                    </div>
+
+                </div>
+
+
+
+                <div>
+
+
+                    {% if application.status == "Saved" %}
+
+                        <span class="status status-saved">
+                            Saved
+                        </span>
+
+
+                    {% elif application.status == "Applied" %}
+
+                        <span class="status status-applied">
+                            Applied
+                        </span>
+
+
+                    {% elif application.status == "Under Review" %}
+
+                        <span class="status status-review">
+                            Under Review
+                        </span>
+
+
+                    {% elif application.status == "Assessment" %}
+
+                        <span class="status status-assessment">
+                            Assessment
+                        </span>
+
+
+                    {% elif application.status == "Interview" %}
+
+                        <span class="status status-interview">
+                            Interview
+                        </span>
+
+
+                    {% elif application.status == "Selected" %}
+
+                        <span class="status status-selected">
+                            Selected
+                        </span>
+
+
+                    {% elif application.status == "Rejected" %}
+
+                        <span class="status status-rejected">
+                            Rejected
+                        </span>
+
+                    {% endif %}
+
+
+                </div>
+
+
+            </div>
+
+
+        {% endfor %}
+
+
+    {% else %}
+
+
+        <div class="empty">
+
+            <h3>
+                No applications yet 🚀
+            </h3>
+
+            <p>
+                Start tracking your job search by adding your first application.
+            </p>
+
+        </div>
+
+
+    {% endif %}
+
+
+</div>
+
+
+
+<div class="footer">
+
+    CareerTrack • Built for the next generation of engineers ⚡
+
+</div>
+
+
+</main>
+
+
+</body>
+
+</html>

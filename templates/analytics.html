@@ -1,0 +1,927 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta name="viewport"
+          content="width=device-width, initial-scale=1.0">
+
+    <title>CareerTrack | Analytics</title>
+
+
+    <style>
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+
+        body {
+            font-family: Arial, sans-serif;
+
+            background: #080b16;
+
+            color: #f8fafc;
+
+            min-height: 100vh;
+        }
+
+
+        /* =========================
+           NAVBAR
+        ========================= */
+
+        .navbar {
+            height: 72px;
+
+            padding: 0 7%;
+
+            display: flex;
+
+            align-items: center;
+
+            justify-content: space-between;
+
+            background: rgba(15, 18, 35, 0.95);
+
+            border-bottom:
+                1px solid rgba(255, 255, 255, 0.08);
+
+            position: sticky;
+
+            top: 0;
+
+            z-index: 100;
+        }
+
+
+        .logo {
+            font-size: 24px;
+
+            font-weight: 800;
+
+            background:
+                linear-gradient(
+                    90deg,
+                    #7c3aed,
+                    #06b6d4
+                );
+
+            background-clip: text;
+
+            color: transparent;
+        }
+
+
+        .nav-links {
+            display: flex;
+
+            align-items: center;
+
+            gap: 24px;
+        }
+
+
+        .nav-links a {
+            color: #94a3b8;
+
+            text-decoration: none;
+
+            font-size: 14px;
+
+            font-weight: 600;
+
+            transition: 0.2s ease;
+        }
+
+
+        .nav-links a:hover {
+            color: #ffffff;
+        }
+
+
+        .add-btn {
+            background:
+                linear-gradient(
+                    135deg,
+                    #7c3aed,
+                    #06b6d4
+                );
+
+            color: #ffffff !important;
+
+            padding: 10px 16px;
+
+            border-radius: 10px;
+        }
+
+
+        /* =========================
+           MAIN
+        ========================= */
+
+        .container {
+            width: 86%;
+
+            max-width: 1300px;
+
+            margin: auto;
+
+            padding: 45px 0 60px;
+        }
+
+
+        .header {
+            margin-bottom: 35px;
+        }
+
+
+        .header h1 {
+            font-size: 38px;
+
+            margin-bottom: 8px;
+        }
+
+
+        .header p {
+            color: #94a3b8;
+
+            font-size: 16px;
+        }
+
+
+        /* =========================
+           CARD
+        ========================= */
+
+        .card {
+            background:
+                rgba(17, 24, 39, 0.78);
+
+            border:
+                1px solid rgba(255, 255, 255, 0.08);
+
+            border-radius: 18px;
+
+            padding: 25px;
+
+            box-shadow:
+                0 15px 40px rgba(0, 0, 0, 0.25);
+        }
+
+
+        /* =========================
+           TOP STATS
+        ========================= */
+
+        .stats-grid {
+            display: grid;
+
+            grid-template-columns:
+                repeat(4, 1fr);
+
+            gap: 20px;
+
+            margin-bottom: 30px;
+        }
+
+
+        .stat-title {
+            color: #94a3b8;
+
+            font-size: 13px;
+
+            margin-bottom: 12px;
+
+            letter-spacing: 0.5px;
+        }
+
+
+        .stat-number {
+            font-size: 32px;
+
+            font-weight: 800;
+        }
+
+
+        .purple {
+            color: #a78bfa;
+        }
+
+
+        .cyan {
+            color: #22d3ee;
+        }
+
+
+        .pink {
+            color: #f472b6;
+        }
+
+
+        .green {
+            color: #34d399;
+        }
+
+
+        /* =========================
+           ANALYTICS GRID
+        ========================= */
+
+        .analytics-grid {
+            display: grid;
+
+            grid-template-columns:
+                1fr 1fr;
+
+            gap: 25px;
+        }
+
+
+        .card h2 {
+            font-size: 20px;
+
+            margin-bottom: 25px;
+        }
+
+
+        /* =========================
+           PIPELINE
+        ========================= */
+
+        .status-row {
+            margin-bottom: 18px;
+        }
+
+
+        .status-info {
+            display: flex;
+
+            justify-content: space-between;
+
+            align-items: center;
+
+            margin-bottom: 8px;
+
+            font-size: 14px;
+        }
+
+
+        .status-name {
+            color: #cbd5e1;
+        }
+
+
+        .status-count {
+            color: #ffffff;
+
+            font-weight: bold;
+        }
+
+
+        .bar {
+            width: 100%;
+
+            height: 8px;
+
+            background: #1e293b;
+
+            border-radius: 20px;
+
+            overflow: hidden;
+        }
+
+
+        .fill {
+            height: 100%;
+
+            width: 55%;
+
+            border-radius: 20px;
+
+            opacity: 0.85;
+        }
+
+
+        .saved-fill {
+            background: #8b5cf6;
+        }
+
+
+        .applied-fill {
+            background: #06b6d4;
+        }
+
+
+        .review-fill {
+            background: #f59e0b;
+        }
+
+
+        .assessment-fill {
+            background: #ec4899;
+        }
+
+
+        .interview-fill {
+            background: #3b82f6;
+        }
+
+
+        .selected-fill {
+            background: #22c55e;
+        }
+
+
+        .rejected-fill {
+            background: #ef4444;
+        }
+
+
+        /* =========================
+           APPLICATION TYPES
+        ========================= */
+
+        .type-grid {
+            display: grid;
+
+            grid-template-columns:
+                1fr 1fr;
+
+            gap: 15px;
+        }
+
+
+        .type-card {
+            padding: 20px;
+
+            border-radius: 15px;
+
+            background:
+                rgba(255, 255, 255, 0.04);
+
+            border:
+                1px solid rgba(255, 255, 255, 0.06);
+
+            transition: 0.2s ease;
+        }
+
+
+        .type-card:hover {
+            transform: translateY(-2px);
+
+            background:
+                rgba(255, 255, 255, 0.06);
+        }
+
+
+        .type-card h3 {
+            font-size: 15px;
+
+            color: #94a3b8;
+
+            margin-bottom: 10px;
+        }
+
+
+        .type-card p {
+            font-size: 28px;
+
+            font-weight: 800;
+        }
+
+
+        /* =========================
+           INSIGHT
+        ========================= */
+
+        .insight {
+            margin-top: 25px;
+
+            padding: 22px;
+
+            background:
+                linear-gradient(
+                    135deg,
+                    rgba(124, 58, 237, 0.15),
+                    rgba(6, 182, 212, 0.08)
+                );
+
+            border:
+                1px solid
+                rgba(124, 58, 237, 0.25);
+
+            border-radius: 18px;
+        }
+
+
+        .insight h3 {
+            margin-bottom: 8px;
+
+            font-size: 18px;
+        }
+
+
+        .insight p {
+            color: #94a3b8;
+
+            line-height: 1.6;
+
+            font-size: 14px;
+        }
+
+
+        /* =========================
+           RESPONSIVE
+        ========================= */
+
+        @media (max-width: 900px) {
+
+            .stats-grid {
+                grid-template-columns:
+                    1fr 1fr;
+            }
+
+
+            .analytics-grid {
+                grid-template-columns:
+                    1fr;
+            }
+
+        }
+
+
+        @media (max-width: 600px) {
+
+            .navbar {
+                padding: 0 5%;
+            }
+
+
+            .nav-links {
+                gap: 10px;
+            }
+
+
+            .nav-links a:not(.add-btn) {
+                display: none;
+            }
+
+
+            .container {
+                width: 92%;
+            }
+
+
+            .stats-grid {
+                grid-template-columns:
+                    1fr;
+            }
+
+
+            .type-grid {
+                grid-template-columns:
+                    1fr;
+            }
+
+
+            .header h1 {
+                font-size: 30px;
+            }
+
+        }
+
+    </style>
+
+</head>
+
+
+<body>
+
+
+<!-- =========================
+     NAVBAR
+========================= -->
+
+<nav class="navbar">
+
+
+    <div class="logo">
+        CareerTrack
+    </div>
+
+
+    <div class="nav-links">
+
+
+        <a href="{% url 'home' %}">
+            Dashboard
+        </a>
+
+
+        <a href="{% url 'application_list' %}">
+            Applications
+        </a>
+
+
+        <a href="{% url 'analytics' %}">
+            Analytics
+        </a>
+
+
+        <a href="{% url 'add_application' %}"
+           class="add-btn">
+            + Add Application
+        </a>
+
+
+        <a href="/logout/">
+            Logout
+        </a>
+
+
+    </div>
+
+
+</nav>
+
+
+
+<!-- =========================
+     MAIN CONTENT
+========================= -->
+
+<div class="container">
+
+
+    <div class="header">
+
+        <h1>
+            Application Analytics 📊
+        </h1>
+
+        <p>
+            Understand your job search at a glance.
+        </p>
+
+    </div>
+
+
+
+    <!-- =========================
+         STATISTICS
+    ========================= -->
+
+    <div class="stats-grid">
+
+
+        <div class="card">
+
+            <div class="stat-title">
+                TOTAL APPLICATIONS
+            </div>
+
+            <div class="stat-number purple">
+                {{ total }}
+            </div>
+
+        </div>
+
+
+
+        <div class="card">
+
+            <div class="stat-title">
+                INTERVIEWS
+            </div>
+
+            <div class="stat-number cyan">
+                {{ interviews }}
+            </div>
+
+        </div>
+
+
+
+        <div class="card">
+
+            <div class="stat-title">
+                SELECTED
+            </div>
+
+            <div class="stat-number green">
+                {{ selected }}
+            </div>
+
+        </div>
+
+
+
+        <div class="card">
+
+            <div class="stat-title">
+                REJECTED
+            </div>
+
+            <div class="stat-number pink">
+                {{ rejected }}
+            </div>
+
+        </div>
+
+
+    </div>
+
+
+
+    <!-- =========================
+         ANALYTICS
+    ========================= -->
+
+    <div class="analytics-grid">
+
+
+
+        <!-- APPLICATION PIPELINE -->
+
+        <div class="card">
+
+            <h2>
+                Application Pipeline
+            </h2>
+
+
+            <div class="status-row">
+
+                <div class="status-info">
+
+                    <span class="status-name">
+                        Saved
+                    </span>
+
+                    <span class="status-count">
+                        {{ saved }}
+                    </span>
+
+                </div>
+
+                <div class="bar">
+
+                    <div class="fill saved-fill"></div>
+
+                </div>
+
+            </div>
+
+
+
+            <div class="status-row">
+
+                <div class="status-info">
+
+                    <span class="status-name">
+                        Applied
+                    </span>
+
+                    <span class="status-count">
+                        {{ applied }}
+                    </span>
+
+                </div>
+
+                <div class="bar">
+
+                    <div class="fill applied-fill"></div>
+
+                </div>
+
+            </div>
+
+
+
+            <div class="status-row">
+
+                <div class="status-info">
+
+                    <span class="status-name">
+                        Under Review
+                    </span>
+
+                    <span class="status-count">
+                        {{ under_review }}
+                    </span>
+
+                </div>
+
+                <div class="bar">
+
+                    <div class="fill review-fill"></div>
+
+                </div>
+
+            </div>
+
+
+
+            <div class="status-row">
+
+                <div class="status-info">
+
+                    <span class="status-name">
+                        Assessment
+                    </span>
+
+                    <span class="status-count">
+                        {{ assessments }}
+                    </span>
+
+                </div>
+
+                <div class="bar">
+
+                    <div class="fill assessment-fill"></div>
+
+                </div>
+
+            </div>
+
+
+
+            <div class="status-row">
+
+                <div class="status-info">
+
+                    <span class="status-name">
+                        Interview
+                    </span>
+
+                    <span class="status-count">
+                        {{ interviews }}
+                    </span>
+
+                </div>
+
+                <div class="bar">
+
+                    <div class="fill interview-fill"></div>
+
+                </div>
+
+            </div>
+
+
+
+            <div class="status-row">
+
+                <div class="status-info">
+
+                    <span class="status-name">
+                        Selected
+                    </span>
+
+                    <span class="status-count">
+                        {{ selected }}
+                    </span>
+
+                </div>
+
+                <div class="bar">
+
+                    <div class="fill selected-fill"></div>
+
+                </div>
+
+            </div>
+
+
+
+            <div class="status-row">
+
+                <div class="status-info">
+
+                    <span class="status-name">
+                        Rejected
+                    </span>
+
+                    <span class="status-count">
+                        {{ rejected }}
+                    </span>
+
+                </div>
+
+                <div class="bar">
+
+                    <div class="fill rejected-fill"></div>
+
+                </div>
+
+            </div>
+
+
+        </div>
+
+
+
+        <!-- APPLICATION TYPES -->
+
+        <div class="card">
+
+            <h2>
+                Application Types
+            </h2>
+
+
+            <div class="type-grid">
+
+
+                <div class="type-card">
+
+                    <h3>
+                        Full-time
+                    </h3>
+
+                    <p class="purple">
+                        {{ full_time }}
+                    </p>
+
+                </div>
+
+
+
+                <div class="type-card">
+
+                    <h3>
+                        Internship
+                    </h3>
+
+                    <p class="cyan">
+                        {{ internship }}
+                    </p>
+
+                </div>
+
+
+
+                <div class="type-card">
+
+                    <h3>
+                        Part-time
+                    </h3>
+
+                    <p class="pink">
+                        {{ part_time }}
+                    </p>
+
+                </div>
+
+
+
+                <div class="type-card">
+
+                    <h3>
+                        Contract
+                    </h3>
+
+                    <p class="green">
+                        {{ contract }}
+                    </p>
+
+                </div>
+
+
+            </div>
+
+
+
+            <div class="insight">
+
+                <h3>
+                    🚀 Keep Going
+                </h3>
+
+                <p>
+                    Your application data is building a clear
+                    picture of your job search. Keep tracking
+                    every opportunity to understand your progress
+                    over time.
+                </p>
+
+            </div>
+
+
+        </div>
+
+
+    </div>
+
+
+</div>
+
+
+</body>
+
+</html>
